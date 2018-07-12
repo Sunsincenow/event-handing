@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#box2{
+			width:50px;
+			height:50px;
+			background:lightblue;
+			position: relative;
+		}
+	</style>
+	
+</head>
+<body>
+	<div id='box2'></div>
+	<script>
+		//拖拽
+		var dom2=document.getElementById('box2');
+		dom2.onmousedown=function(event){
+			//box元素跟着鼠标移动
+			console.log(this);
+			var oldX=event.clientX;
+			var oldY=event.clientY;
+			var l=dom2.style.left?parseInt(dom2.style.left):0;
+			var t=dom2.style.top?parseInt(dom2.style.top):0;
+			console.log(l,t);
+			dom2.onmousemove=function(event){
+				var newX=event.clientX;
+				var newY=event.clientY;
+				dom2.style.left=(l+newX-oldX)+'px';
+				dom2.style.top=(t+newY-oldY)+'px';
+			}
+		}
+		dom2.onmouseup=function(){
+			dom2.onmousemove=null;
+		}
+	</script>
+</body>
+</html>
